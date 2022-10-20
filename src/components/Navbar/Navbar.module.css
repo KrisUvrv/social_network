@@ -6,8 +6,13 @@
 
 .item a {
     color: darkblue;
+    text-decoration: none;
 }
 
 .item a:focus {
      color: red;
  }
+
+.item a.activeLink {
+    color: gold;
+}
