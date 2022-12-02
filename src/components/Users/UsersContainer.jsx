@@ -8,7 +8,6 @@ import {
 } from '../../redux/users_reducer';
 import axios from 'axios';
 import Users from './Users';
-import loader from '../../assets/images/loader.png';
 import Preloader from "../common/Preloader/Preloader";
 
 class UsersContainer extends React.Component {
