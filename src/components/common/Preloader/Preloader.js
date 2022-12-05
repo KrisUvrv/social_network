@@ -2,7 +2,7 @@ import loader from "../../../assets/images/loader.png";
 import React from "react";
 
 let Preloader = (props) => {
-   return <div style={{backgroundColor: 'white'}}>
+   return <div>
     <img src={loader} />
    </div>
 }
