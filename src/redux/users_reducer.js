@@ -1,5 +1,4 @@
 import {usersAPI} from "../api/api";
-import {setAuthUserData} from "./auth_reducer";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
