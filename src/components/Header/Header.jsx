@@ -7,7 +7,7 @@ const Header = (props) => {
         <img src='https://www.inisol.com/wp-content/uploads/2019/10/nestle-logo-png-transparent-1024x355.png'></img>
 
         <div className={s.loginBlock}>
-            { props.isAuth ? props.login
+            { props.isAuth ? <div>{props.login} - <button onClick={props.logout}>Logout</button> </div>
             : <NavLink to={'login'}>Login</NavLink>}
         </div>
     </header>
