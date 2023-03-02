@@ -1,7 +1,9 @@
 {
   "name": "social_network",
   "jest": {
-    "transformIgnorePatterns": ["/node_modules/(?!axios)"]
+    "transformIgnorePatterns": [
+      "./node_modules/(?!axios)"
+    ]
   },
   "version": "0.1.0",
   "private": true,
