@@ -32,6 +32,8 @@ class App extends React.Component {
                         <Routes>
                             <Route path='/dialogs/*'
                                    element={<DialogsContainer/>}/>
+                            <Route path='/'
+                                   element={<ProfileContainer/>}/>
                             <Route exact path='/profile/'
                                    element={<ProfileContainer/>}/>
                             <Route path='/profile/:userId'
