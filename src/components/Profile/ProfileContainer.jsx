@@ -28,7 +28,6 @@ function withRouter(Component) {
 
 class ProfileContainer extends React.Component {
     refreshProfile() {
-        console.log('ProfileContainer',this.props)
         let userId = this.props.router.params.userId;
         if (!userId) {
             userId = this.props.authorisedUserId;
