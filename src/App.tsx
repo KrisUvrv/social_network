@@ -8,6 +8,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app_reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import StartPage from "./components/StartPage/StartPage";
 
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -54,6 +55,8 @@ class App extends React.Component {
                                    element={<Login/>}/>
                             <Route path='*'
                                    element={<div>404 NOT FOUND</div>}/>
+                            <Route path='/social_network'
+                                   element={<StartPage/>}/>
                         </Routes>
                     </Suspense>
                 </div>
