@@ -1,4 +1,4 @@
-import profileReducer, {addPostActionCreator, deletePost} from "./profile_reducer";
+import profileReducer, {actions} from "./profile_reducer";
 
 let state = {
     posts: [
@@ -6,11 +6,14 @@ let state = {
         {id: 2, message: 'It\'s my first post', likesCount: 79},
         {id: 3, message: 'da-da-da', likesCount: 9},
         {id: 4, message: 'blabla', likesCount: 7},
-    ]
+    ],
+    profile: null,
+    status: '',
+    newPostText: ''
 };
 it(`length of posts should be incremented`,() => {
     // 1. test data
-    let action = addPostActionCreator("hello");
+    let action = actions.addPostActionCreator("hello");
     // 2. action
     let newState = profileReducer(state, action);
     // 3. expectation
@@ -19,7 +22,7 @@ it(`length of posts should be incremented`,() => {
 
 it(`message of new post should be correct`,() => {
     // 1. test data
-    let action = addPostActionCreator("hello");
+    let action = actions.addPostActionCreator("hello");
     // 2. action
     let newState = profileReducer(state, action);
     // 3. expectation
@@ -28,7 +31,7 @@ it(`message of new post should be correct`,() => {
 
 it(`after deleting length should be decremented`,() => {
     // 1. test data
-    let action = deletePost(1);
+    let action = actions.deletePost(1);
     // 2. action
     let newState = profileReducer(state, action);
     // 3. expectation
@@ -37,7 +40,7 @@ it(`after deleting length should be decremented`,() => {
 
 it(`after deleting length shouldn't be decremented if id is incorrect`,() => {
     // 1. test data
-    let action = deletePost(1000);
+    let action = actions.deletePost(1000);
     // 2. action
     let newState = profileReducer(state, action);
     // 3. expectation
