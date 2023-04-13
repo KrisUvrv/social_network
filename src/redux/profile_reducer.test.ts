@@ -9,7 +9,6 @@ let state = {
     ],
     profile: null,
     status: '',
-    newPostText: ''
 };
 it(`length of posts should be incremented`,() => {
     // 1. test data

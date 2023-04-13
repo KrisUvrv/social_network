@@ -3,17 +3,25 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import AddMessageForm from "./Message/AddMessageForm/AddMessageForm";
+import {InitialStateType} from "../../redux/dialogs_reducer";
 
+type PropsType = {
+    dialogs: InitialStateType
+    sendMessage: (messageText: string) => void
+}
 
-const Dialogs = (props) => {
+export type NewMessageFormValuesType = {
+    newMessageBody: string
+}
+
+const Dialogs: React.FC<PropsType> = (props) => {
 
     let state = props.dialogs;
 
     let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
     let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id} id={m.id}/>);
-    let newMessageBody = state.newMessageBody;
 
-    let addNewMessage = (values) => {
+    let addNewMessage = (values: NewMessageFormValuesType) => {
         props.sendMessage(values.newMessageBody);
     };
 
