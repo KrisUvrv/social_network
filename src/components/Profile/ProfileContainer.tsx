@@ -10,6 +10,7 @@ import {
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
+
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
         let location = useLocation();

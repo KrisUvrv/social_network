@@ -64,12 +64,13 @@ export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
     dispatch(actions.getCaptchaUrlSuccess(captchaUrl));
 };
 
-export const logout = (): ThunkType => async (dispatch) => {
-    let data = await authAPI.logout()
-    if (data.data.resultCode === 0) {
-        dispatch(actions.setAuthUserData(null, null, null, false));
+export const logout = (): ThunkType => async (dispatch: any) => {
+    let response = await authAPI.logout()
+
+    if (response.data.resultCode === 0) {
+        dispatch(actions.setAuthUserData(null, null, null, false))
     }
-};
+}
 
 export default authReducer;
 
