@@ -12,10 +12,6 @@ import {compose} from "redux";
 import {AppStateType} from "../../redux/redux_store";
 import {ProfileType} from "../../types/types";
 
-<<<<<<< HEAD
-
-function withRouter(Component) {
-=======
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchType = {
     getUserProfile: (userId: number) => void
@@ -31,7 +27,6 @@ type PathParamsType = {
 
     function withRouter(Component)
 {
->>>>>>> 033855721f1b7029c861996ec75fe7945858c878
     function ComponentWithRouterProp(props) {
         let location = useLocation();
         let navigate = useNavigate();

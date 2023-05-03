@@ -7,16 +7,10 @@ import {UserType} from "../../types/types";
 type PropsType = {
     user: UserType
     followingInProgress: Array<number>
-<<<<<<< HEAD
-    unfollow: (userId: number) => void
     follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
-=======
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-}
->>>>>>> 033855721f1b7029c861996ec75fe7945858c878
 let User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}) => {
     return <div>
                 <span>

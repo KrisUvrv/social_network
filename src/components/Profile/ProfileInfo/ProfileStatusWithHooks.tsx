@@ -4,10 +4,7 @@ type PropsType = {
     status: string
     updateStatus: (status: string) => void
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 033855721f1b7029c861996ec75fe7945858c878
 const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
 
     let [editMode, setEditMode] = useState(false);

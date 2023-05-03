@@ -22,12 +22,8 @@ let rootReducer = combineReducers({
 type RootReducerType = typeof rootReducer; //(globalstate: GLOBALSTATE) => GLOBALSTATE
 export type AppStateType = ReturnType<RootReducerType>
 
-<<<<<<< HEAD:src/redux/redux_store.tsx
-export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 
-=======
 export type InferActionsTypes<T> = T extends { [key: string]: (...args: any[]) => infer U } ? U : never
->>>>>>> 033855721f1b7029c861996ec75fe7945858c878:src/redux/redux_store.ts
 export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
 // noinspection TypeScriptUnresolvedVariable
