@@ -6,7 +6,11 @@ import AddMessageForm from "./Message/AddMessageForm/AddMessageForm";
 import {InitialStateType} from "../../redux/dialogs_reducer";
 
 type PropsType = {
+<<<<<<< HEAD
     dialogsPage: InitialStateType
+=======
+    dialogs: InitialStateType
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
     sendMessage: (messageText: string) => void
 }
 

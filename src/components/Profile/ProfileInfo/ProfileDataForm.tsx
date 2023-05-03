@@ -10,7 +10,11 @@ type PropsType = {
 }
 type ProfileTypeKeys = GetStringKeys<ProfileType>
 
+<<<<<<< HEAD
 const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = ({handleSubmit, profile, error}) => {
+=======
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType>= ({handleSubmit, profile, error}) => {
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
     return <form onSubmit={handleSubmit}>
         <div>
             <button>save
@@ -23,7 +27,11 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & Prop
         </div>
         <div>
             <b>About me</b>:
+<<<<<<< HEAD
             { createField("About me", "aboutMe", [], Textarea  )}
+=======
+            { createField<ProfileTypeKeys>("About me", "aboutMe", [], Textarea  )}
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
         </div>
         <div>
             <b>looking for a job:</b> {createField<ProfileTypeKeys>("", "lookingForAJob", [], Input, {type: "checkbox"})}
@@ -34,6 +42,10 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & Prop
         <div>
                 <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
                 return <div key={key} className={s.contact}>
+<<<<<<< HEAD
+=======
+                    {/*todo: create some solution for embedded objects*/}
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
                     <b>{key}: {createField(key, "contacts." + key, [], Input)}</b>
                 </div>
             })}

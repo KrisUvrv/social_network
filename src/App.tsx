@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {initializeApp} from "./redux/app_reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import StartPage from "./components/StartPage/StartPage";
+import {AppStateType} from "./redux/redux_store";
 
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -20,7 +21,11 @@ type DispatchPropsType = {
     initializeApp: () => void
 }
 
+<<<<<<< HEAD
 class App extends React.Component<MapPropsType & DispatchPropsType> {
+=======
+class App extends React.Component<MapPropsType & DispatchPropsType, MapPropsType & DispatchPropsType > {
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
     catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
         alert("some error occured");
         //console.error(promiseRejectionEvent);
@@ -50,7 +55,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                                    element={<DialogsContainer/>}/>
                             <Route path='/'
                                    element={<ProfileContainer/>}/>
-                            <Route exact path='/profile/'
+                            <Route path='/profile/'
                                    element={<ProfileContainer/>}/>
                             <Route path='/profile/:userId'
                                    element={<ProfileContainer/>}/>
@@ -70,7 +75,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 

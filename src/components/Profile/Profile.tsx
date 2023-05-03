@@ -4,10 +4,17 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "../../types/types";
 
 type PropsType = {
+<<<<<<< HEAD
     profile: ProfileType | null
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
+=======
+    isOwner: boolean
+    profile: ProfileType | null
+    status: string
+    updateStatus: (status: string) => void
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
     savePhoto: (file: File) => void
     saveProfile: (profile: ProfileType) => Promise<any>
 }

@@ -2,6 +2,7 @@ import {profileAPI} from "../api/profile_api";
 import {FormAction, stopSubmit} from "redux-form";
 import {PhotosType, PostType, ProfileType} from "../types/types";
 import {BaseThunkType, InferActionsTypes} from "./redux_store";
+import {ResultCodesEnum} from "../api/api";
 
 let initialState = {
     posts: [
@@ -12,7 +13,6 @@ let initialState = {
     ] as Array<PostType>,
     profile: null as ProfileType | null,
     status: '',
-    newPostText: ''
 };
 
 const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -26,7 +26,6 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: '',
             };
         case 'SN/PROFILE/SET-STATUS':
             return {
@@ -79,7 +78,7 @@ export const savePhoto = (file: File): ThunkType => async (dispatch) => {
 export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
     const userId = getState().auth.id;
     const data = await profileAPI.saveProfile(profile);
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodesEnum.Success) {
         if (userId != null) {
             dispatch(getUserProfile(userId))
         } else {

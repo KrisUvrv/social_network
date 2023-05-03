@@ -5,7 +5,11 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/user-png-default-user-image-png-png.png";
 import styles from "../../Users/users.module.css";
 import ProfileDataForm from "./ProfileDataForm";
+<<<<<<< HEAD
 import {ProfileType} from "../../../types/types";
+=======
+import {ContactsType, ProfileType} from "../../../types/types";
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
 
 type PropsType = {
     profile: ProfileType | null
@@ -25,12 +29,20 @@ const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwne
     }
 
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+<<<<<<< HEAD
         if (e.target.files.length) {
+=======
+        if (e.target.files && e.target.files.length) {
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
             savePhoto(e.target.files[0]);
         }
     }
 
     const onSubmit = (formData: ProfileType) => {
+<<<<<<< HEAD
+=======
+        //todo: remove then
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
         saveProfile(formData).then(() => {
             setEditMode(false);
         });
@@ -43,7 +55,9 @@ const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwne
                 {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 {editMode
                     ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
-                    : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => {setEditMode(true)}}/>}
+                    : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => {
+                        setEditMode(true)
+                    }}/>}
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>)
@@ -54,7 +68,10 @@ type ProfileDataPropsType = {
     isOwner: boolean
     goToEditMode: () => void
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
 const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
     return <div>
         {isOwner && <div>
@@ -71,11 +88,14 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEdit
             <b>My skills</b>: {profile.lookingForAJobDescription}
         </div>}
         <div>
-            <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
-            return <Contact key={key}
-                            contactTitle={key}
-                            contactValue={profile.contacts[key]}/>
-        })}
+            <b>Contacts: </b> {
+            Object
+                .keys(profile.contacts)
+                .map(key => {
+                    return <Contact key={key}
+                                    contactTitle={key}
+                                    contactValue={profile.contacts[key as keyof ContactsType]}/>
+                })}
         </div>
     </div>
 }
@@ -84,6 +104,10 @@ type ContactsPropsType = {
     contactTitle: string
     contactValue: string
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 033855721f1b7029c861996ec75fe7945858c878
 const Contact: React.FC<ContactsPropsType> = ({contactTitle, contactValue}) => {
     return <div className={s.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
