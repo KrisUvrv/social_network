@@ -10,9 +10,11 @@ import StartPage from "./components/StartPage/StartPage";
 import {AppStateType} from "./redux/redux_store";
 import {UsersPage} from "./components/Users/UsersContainer";
 import {Login} from "./components/Login/Login";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+//const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 //const Login = React.lazy(() => import('./components/Login/Login'));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
