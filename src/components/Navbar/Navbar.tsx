@@ -1,29 +1,38 @@
 import React from "react";
-import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
+import {
+    FireOutlined,
+    MessageOutlined,
+    PlayCircleOutlined,
+    SlidersOutlined,
+    StarOutlined,
+    UserOutlined
+} from "@ant-design/icons";
 
-const Navbar: React.FC = () => {
-    return (
-        <nav className={s.nav}>
-            <div className={s.item}>
-                <NavLink  to="/profile">Profile</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink to="/dialogs">Messages</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink to="/users">Users</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink to="/news">News</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink to="/music">Music</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink to="/settings">Settings</NavLink>
-            </div>
-        </nav>)
-}
+export const navigationItems = [
+    {
+        icon: StarOutlined,
+        label: <NavLink to="/profile">Profile</NavLink>
+    },
 
-export default Navbar;
+    {
+        icon: MessageOutlined,
+        label: <NavLink to="/dialogs">Messages</NavLink>
+    },
+    {
+        icon: UserOutlined,
+        label: <NavLink to="/users">Users</NavLink>
+    },
+    {
+        icon: FireOutlined,
+        label: <NavLink to="/news">News</NavLink>
+    },
+    {
+        icon: PlayCircleOutlined,
+        label: <NavLink to="/music">Music</NavLink>
+    },
+    {
+        icon: SlidersOutlined,
+        label: <NavLink to="/settings">Settings</NavLink>
+    },
+]

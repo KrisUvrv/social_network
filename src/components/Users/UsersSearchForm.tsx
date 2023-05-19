@@ -1,15 +1,11 @@
 import {Field, Formik} from "formik";
 import React from "react";
 import {FilterType} from "../../redux/users_reducer";
-
+import {Button, Form, Input, Select} from "antd";
 
 const usersSearchFormValidate = (values: any) => {
     const errors = {};
     return errors;
-}
-type FormType = {
-    term: string,
-    friend: "true" | "false" | "null"
 }
 
 type PropsType = {
@@ -17,36 +13,49 @@ type PropsType = {
 }
 
 const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
-    const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
+
+    const initialValues = {
+        term: '',
+        friend: null
+    };
+    const submit = (values: typeof initialValues) => {
 
         const filter: FilterType = {
             term: values.term,
-            friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
+            friend: values.friend
         }
 
         props.onFilterChanged(filter);
-        setSubmitting(false);
     }
+
+    const {Option} = Select;
     return <div>
-        <Formik
-            initialValues={{term: '', friend: null}}
-            validate={usersSearchFormValidate}
-            onSubmit={submit}
+        <Form
+            initialValues={initialValues}
+            validationSchema={usersSearchFormValidate}
+            onFinish={submit}
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 16 }}
+            style={{ maxWidth: 600 }}
         >
-            {({isSubmitting}) => (
-                <form>
-                    <Field type="text" name="term"/>
-                    <Field name="friend" as="select">
-                        <option value="null">All</option>
-                        <option value="true">Only followed</option>
-                        <option value="false">Only unfollowed</option>
-                    </Field>
-                    <button type="submit" disabled={isSubmitting}>
+                    <Form.Item type="text" name="term">
+                        <Input placeholder="input search text" />
+                    </Form.Item>
+
+                    <Form.Item name="friend">
+                        <Select placeholder="Select a option"
+                                onChange={props.onFilterChanged}
+                                allowClear>
+                            <Option value="null">All</Option>
+                            <Option value="true">Only followed</Option>
+                            <Option value="false">Only unfollowed</Option>
+                        </Select>
+                    </Form.Item>
+
+                    <Button htmlType="submit">
                         Find
-                    </button>
-                </form>
-            )}
-        </Formik>
+                    </Button>
+        </Form>
     </div>
 })
 

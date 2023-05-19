@@ -2,6 +2,7 @@ import React from 'react';
 import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, GetStringKeys, Input} from '../../../common/FormsControls/FormsControls';
 import {required} from '../../../../utils/validators/validators';
+import {Button} from "antd";
 
 type PropsType = {}
 

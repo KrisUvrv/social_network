@@ -6,6 +6,8 @@ import userPhoto from "../../../assets/images/user-png-default-user-image-png-pn
 import styles from "../../Users/users.module.css";
 import ProfileDataForm from "./ProfileDataForm";
 import {ContactsType, ProfileType} from "../../../types/types";
+import {Avatar, Button, Input, Space} from "antd";
+import {UserOutlined} from "@ant-design/icons";
 
 
 type PropsType = {
@@ -39,8 +41,8 @@ const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwne
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} className={styles.userPhoto}/>
-                {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                <Avatar size={164} icon={<img src={profile.photos.large || userPhoto} className={styles.userPhoto}/>} />
+                {isOwner && <Input type={"file"} onChange={onMainPhotoSelected}/>}
                 {editMode
                     ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
                     : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => {
@@ -59,7 +61,7 @@ type ProfileDataPropsType = {
 const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
     return <div>
         {isOwner && <div>
-            <button onClick={goToEditMode}>edit</button>
+            <Button onClick={goToEditMode}>edit</Button>
         </div>}
         <div>
             <b>Full name:</b> {profile.fullName}

@@ -4,6 +4,7 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import s from './ProfileInfo.module.css';
 import styles from "../../common/FormsControls/FormsControls.module.css";
 import {ProfileType} from "../../../types/types";
+import {Button} from "antd";
 
 type PropsType = {
     profile: ProfileType
@@ -13,8 +14,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & Prop
 
     return <form onSubmit={handleSubmit}>
         <div>
-            <button>save
-            </button>
+            <button>save</button>
         </div>
         {error && <div className={styles.formSummaryError}>{error}</div>}
 
