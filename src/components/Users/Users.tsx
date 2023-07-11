@@ -97,7 +97,6 @@ export const Users: React.FC = () => {
 
     return (
         <div>
-
             <div>
                 <UsersSearchForm onFilterChanged={onFilterChanged} />
             </div>

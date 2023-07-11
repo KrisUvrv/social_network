@@ -3,8 +3,8 @@ import userPhoto from '../../assets/images/user-png-default-user-image-png-png.p
 import styles from './users.module.css';
 import {NavLink} from 'react-router-dom';
 import {UserType} from "../../types/types";
-import {Avatar, Button} from "antd";
-import type { SizeType } from 'antd/es/config-provider/SizeContext';
+import {Avatar, Button, Card, Space} from "antd";
+import type {SizeType} from 'antd/es/config-provider/SizeContext';
 
 type PropsType = {
     user: UserType
@@ -16,21 +16,26 @@ type PropsType = {
 const User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}) => {
     const [size] = useState<SizeType>('small')
 
-    return <div>
+    return <div className={styles.div}>
                 <span>
-                    <div>
+                    <div className={styles.users}>
                         <NavLink to={'/profile/' + user.id}>
-                            <Avatar size={80} icon={<img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto}/>} />
+                            <Avatar size={80} icon={<img src={user.photos.small != null ? user.photos.small : userPhoto}
+                                                         className={styles.userPhoto}/>}/>
                         </NavLink>
                     </div>
-                    <div>
+                    <div className={styles.users}>
                         {user.followed
-                            ? <Button  type="dashed" size={size} disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                                unfollow(user.id);
-                            }}>Unfollow</Button>
-                            : <Button  type="dashed" size={size} disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                                follow(user.id);
-                            }}>Follow</Button>}
+                            ?
+                            <Button type="dashed" size={size} disabled={followingInProgress.some(id => id === user.id)}
+                                    onClick={() => {
+                                        unfollow(user.id);
+                                    }}>Unfollow</Button>
+                            :
+                            <Button type="dashed" size={size} disabled={followingInProgress.some(id => id === user.id)}
+                                    onClick={() => {
+                                        follow(user.id);
+                                    }}>Follow</Button>}
                     </div>
                 </span>
         <span>

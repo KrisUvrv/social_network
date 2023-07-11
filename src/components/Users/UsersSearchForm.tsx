@@ -1,4 +1,3 @@
-import {Field, Formik} from "formik";
 import React from "react";
 import {FilterType} from "../../redux/users_reducer";
 import {Button, Form, Input, Select} from "antd";
@@ -34,9 +33,9 @@ const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
             initialValues={initialValues}
             validationSchema={usersSearchFormValidate}
             onFinish={submit}
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
+            // labelCol={{ span: 8 }}
+            // wrapperCol={{ span: 16 }}
+            style={{ maxWidth: 300 }}
         >
                     <Form.Item type="text" name="term">
                         <Input placeholder="input search text" />

@@ -1,28 +1,32 @@
-
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import React from "react";
-import {createField, Input, Textarea} from "../../../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../../../utils/validators/validators";
 import {NewMessageFormValuesType} from "../../Dialogs";
-import {LoginFormValuesType} from "../../../Login/Login";
+import {Button, Form, Input} from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 const maxLength50 = maxLengthCreator(50);
 
 type NewMessageFormValuesKeysType = Extract<keyof NewMessageFormValuesType, string>
 type PropsType = {}
 
-const AddMessageForm:  React.FC<InjectedFormProps<NewMessageFormValuesType, PropsType> & PropsType> = (props) => {
+export const AddMessageForm:  React.FC<InjectedFormProps<NewMessageFormValuesType, PropsType> & PropsType> = (props) => {
+    const [form] = Form.useForm();
     return (
-        <form onSubmit={props.handleSubmit}>
+        <Form form={form} onFinish={props.onSubmit}>
             <div>
-                {createField<NewMessageFormValuesKeysType>('Enter your message', 'newMessageBody', [required, maxLength50], Textarea)}
+                <Form.Item
+                    name='newMessageBody'
+                    // rules={[{required: true, maxLength50, message: "Email is required"}]}
+                >
+                    <TextArea
+                           placeholder='Enter your message'
+                           className="form-control inp_text"
+                           />
+
+                </Form.Item>
+                <Button htmlType="submit">Send</Button>
             </div>
-            <div>
-                <button>Send</button>
-            </div>
-        </form>
+        </Form>
     )
 }
-
-export default reduxForm<NewMessageFormValuesType>({form: "dialogAddMessageForm"})(AddMessageForm);
-

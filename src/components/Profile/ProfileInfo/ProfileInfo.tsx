@@ -6,8 +6,8 @@ import userPhoto from "../../../assets/images/user-png-default-user-image-png-pn
 import styles from "../../Users/users.module.css";
 import ProfileDataForm from "./ProfileDataForm";
 import {ContactsType, ProfileType} from "../../../types/types";
-import {Avatar, Button, Input, Space} from "antd";
-import {UserOutlined} from "@ant-design/icons";
+import {Avatar, Badge, Button, Descriptions, Input, message, Upload} from "antd";
+import {UploadOutlined} from '@ant-design/icons';
 
 
 type PropsType = {
@@ -41,14 +41,22 @@ const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwne
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <Avatar size={164} icon={<img src={profile.photos.large || userPhoto} className={styles.userPhoto}/>} />
-                {isOwner && <Input type={"file"} onChange={onMainPhotoSelected}/>}
+                <Avatar size={164} icon={<img src={profile.photos.large || userPhoto} className={styles.userPhoto}/>}/>
+                {isOwner &&
+                    <Input onChange={onMainPhotoSelected}
+                           type="file" bordered={false}
+                           id="image_uploads"
+                           name="image_uploads"
+                           accept=".jpg, .jpeg, .png"
+                          // style={{maxWidth: 600}}
+                    />
+                }
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 {editMode
                     ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
                     : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => {
                         setEditMode(true)
                     }}/>}
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>)
 }
@@ -60,29 +68,31 @@ type ProfileDataPropsType = {
 }
 const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
     return <div>
+        <Descriptions
+            bordered
+            column={{xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1}}
+        >
+            <Descriptions.Item label="Full name">{profile.fullName}</Descriptions.Item>
+            <Descriptions.Item label="About me:">{profile.aboutMe}</Descriptions.Item>
+            <Descriptions.Item label="looking for a job:">{profile.lookingForAJob ? "yes" : "no"}</Descriptions.Item>
+            {profile.lookingForAJob &&
+                <Descriptions.Item label="My skills">{profile.lookingForAJobDescription}</Descriptions.Item>
+            }
+            <Descriptions.Item label="Contacts:">
+                {Object
+                    .keys(profile.contacts)
+                    .map(key => {
+                        return <Contact key={key}
+                                        contactTitle={key}
+                                        contactValue={profile.contacts[key as keyof ContactsType]}/>
+                    })}
+            </Descriptions.Item>
+        </Descriptions>
+
         {isOwner && <div>
             <Button onClick={goToEditMode}>edit</Button>
         </div>}
-        <div>
-            <b>Full name:</b> {profile.fullName}
-        </div>
-        <div><b>About me: </b>{profile.aboutMe}</div>
-        <div>
-            <b>looking for a job:</b> {profile.lookingForAJob ? "yes" : "no"}
-        </div>
-        {profile.lookingForAJob && <div>
-            <b>My skills</b>: {profile.lookingForAJobDescription}
-        </div>}
-        <div>
-            <b>Contacts: </b> {
-            Object
-                .keys(profile.contacts)
-                .map(key => {
-                    return <Contact key={key}
-                                    contactTitle={key}
-                                    contactValue={profile.contacts[key as keyof ContactsType]}/>
-                })}
-        </div>
+
     </div>
 }
 

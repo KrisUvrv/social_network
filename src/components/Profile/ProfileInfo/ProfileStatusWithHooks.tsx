@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
+import {Badge, Descriptions} from "antd";
 
 type PropsType = {
     status: string
@@ -10,27 +11,32 @@ const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
 
-    useEffect( () => {
+    useEffect(() => {
         setStatus(props.status);
-    }, [props.status] );
+    }, [props.status]);
 
     const activateEditMode = () => {
         setEditMode(true);
     }
     const deactivateEditMode = () => {
-            setEditMode(false);
+        setEditMode(false);
         props.updateStatus(status);
     }
 
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-       setStatus(e.currentTarget.value);
+        setStatus(e.currentTarget.value);
     }
 
     return (
         <div>
-            { !editMode &&
+            {!editMode &&
                 <div>
-                    <span onDoubleClick={activateEditMode}>{props.status || "----"}</span>
+                    <Descriptions>
+                        <Descriptions.Item label="Status" span={3}>
+                            <span onDoubleClick={activateEditMode}>{props.status || "----"}</span>
+                        </Descriptions.Item>
+                    </Descriptions>
+
                 </div>
             }
             {editMode &&
@@ -40,7 +46,7 @@ const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
                         onBlur={deactivateEditMode}
                         autoFocus={true}
                         value={status}
-                        />
+                    />
                 </div>
             }
         </div>

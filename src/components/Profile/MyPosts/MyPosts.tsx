@@ -1,7 +1,7 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import AddPostForm, {AddPostFormValuesType} from "./AddPostForm/AddPostForm";
+import {AddPostForm, AddPostFormValuesType} from "./AddPostForm/AddPostForm";
 import {PostType} from "../../../types/types";
 
 
@@ -20,6 +20,7 @@ const MyPosts: React.FC<MapPropsType & DispatchPropsType> = props => {
         .map(p => < Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
     let onAddPost = (values: AddPostFormValuesType) => {
         props.addPost(values.newPostText);
+        
     }
 
     return (
